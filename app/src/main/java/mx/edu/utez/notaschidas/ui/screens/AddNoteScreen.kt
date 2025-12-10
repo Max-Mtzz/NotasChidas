@@ -12,7 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -34,7 +38,7 @@ fun AddNoteScreen(
     var imagenUri by remember { mutableStateOf<String?>(null) }
     var mostrarOpciones by remember { mutableStateOf(false) }
 
-    // ✅ ARCHIVO REAL PARA LA CÁMARA
+    //  ARCHIVO REAL PARA LA CÁMARA
     val archivoFoto = remember {
         File(context.cacheDir, "foto_${System.currentTimeMillis()}.jpg")
     }
@@ -47,14 +51,14 @@ fun AddNoteScreen(
         )
     }
 
-    // ✅ GALERÍA
+    // GALERÍA
     val launcherGaleria = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
         imagenUri = uri?.toString()
     }
 
-    // ✅ CÁMARA REAL
+    //  CÁMARA REAL
     val launcherCamara = rememberLauncherForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { success ->
@@ -63,7 +67,7 @@ fun AddNoteScreen(
         }
     }
 
-    // ✅ PERMISO CÁMARA
+    //  PERMISO CÁMARA
     val permisoCamaraLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { permitido ->
@@ -91,12 +95,12 @@ fun AddNoteScreen(
                 .heightIn(200.dp, 600.dp)
         )
 
-        // ✅ BOTÓN QUE AHORA SÍ FUNCIONA
+        //  BOTÓN QUE AHORA SÍ FUNCIONA
         Button(onClick = { mostrarOpciones = true }) {
             Text("Seleccionar Imagen")
         }
 
-        // ✅ PREVISUALIZACIÓN
+        //  PREVISUALIZACIÓN
         imagenUri?.let {
             AsyncImage(
                 model = it,
@@ -119,7 +123,7 @@ fun AddNoteScreen(
             Text("Guardar")
         }
 
-        // ✅ SELECTOR CÁMARA / GALERÍA
+        //  SELECTOR CÁMARA / GALERÍA
         if (mostrarOpciones) {
             androidx.compose.material3.AlertDialog(
                 onDismissRequest = { mostrarOpciones = false },

@@ -6,10 +6,8 @@ import android.hardware.SensorManager
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
@@ -33,7 +31,6 @@ import coil.compose.AsyncImage
 import mx.edu.utez.notaschidas.data.model.Note
 import mx.edu.utez.notaschidas.utils.GyroShakeDetector
 import mx.edu.utez.notaschidas.viewmodel.NoteViewModel
-import java.io.File
 
 @Composable
 fun NoteScreen(
@@ -121,7 +118,7 @@ fun NoteScreen(
         }
     }
 
-    // ✅ CONFIRMACIÓN CON GIROSCOPIO
+    //  CONFIRMACIÓN CON GIROSCOPIO
     if (mostrarConfirmacion && notaSeleccionada != null) {
         AlertDialog(
             onDismissRequest = { mostrarConfirmacion = false },
